@@ -7,6 +7,8 @@ pygame.init()
 HEIGHT = 600
 WIDTH = 600
 LINE_WIDTH = 15
+RADIUS = 60
+C_WIDTH = 15
 
 # colors
 BG_COLOR = (216, 134, 235)
@@ -32,7 +34,7 @@ def draw_shape ():
     for row in range(3):
         for col in range(3):
             if board [row][col]==1:
-                pass
+                pygame.draw.circle( screen,LINE_COLOR, (int(col*200+200/2),int(row*200+200/2)),RADIUS,C_WIDTH)
             elif board [row][col] == 2:
                 pass
 
