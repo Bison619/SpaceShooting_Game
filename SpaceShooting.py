@@ -9,7 +9,9 @@ HEIGHT = 700
 WIDTH = 1400
 SHIP_WIDTH = 85
 SHIP_HEIGHT = 90
-velocity = 5
+VELOCITY = 10
+BLACK = (255,255,255)
+BORDER = pygame.Rect(WIDTH/2 - 0.25, 0 , 0.5 , HEIGHT)
 
 # clock fps
 clock = pygame.time.Clock()
@@ -46,32 +48,34 @@ def screendis(red_ship,blue_ship):
     if abs(scroll) > bg_width:
          scroll = 0
     # img blit
+    pygame.draw.rect(screen,BLACK,BORDER)
     screen.blit(red,(red_ship.x,red_ship.y))
     screen.blit(blue,(blue_ship.x,blue_ship.y))
+
     pygame.display.update()
 
 
 # for the movement of the ship in the screen for red
 def red_movement(key_pressed,red_ship):
-    if key_pressed[pygame.K_a]: #left
-         red_ship.x -= velocity
-    if key_pressed[pygame.K_d]: #right
-         red_ship.x += velocity
-    if key_pressed[pygame.K_w]: #up
-         red_ship.y -= velocity
-    if key_pressed[pygame.K_s]: #down
-         red_ship.y += velocity
+    if key_pressed[pygame.K_a] and red_ship.x - VELOCITY > 0: #left
+         red_ship.x -= VELOCITY
+    if key_pressed[pygame.K_d] and red_ship.x + VELOCITY + red_ship.width < BORDER.x - 10 : #right
+         red_ship.x += VELOCITY
+    if key_pressed[pygame.K_w] and red_ship.y - VELOCITY > 35 : #up
+         red_ship.y -= VELOCITY
+    if key_pressed[pygame.K_s] and red_ship.y + VELOCITY + red_ship.width < HEIGHT : #down
+         red_ship.y += VELOCITY
 
 # for the movement of the ship in the screen for blue
 def blue_movement(key_pressed,blue_ship):
-    if key_pressed[pygame.K_LEFT]: #left
-         blue_ship.x -= velocity
-    if key_pressed[pygame.K_RIGHT]: #right
-         blue_ship.x += velocity
-    if key_pressed[pygame.K_UP]: #up
-         blue_ship.y -= velocity
-    if key_pressed[pygame.K_DOWN]: #down
-         blue_ship.y += velocity
+    if key_pressed[pygame.K_LEFT] and  blue_ship.x - VELOCITY > BORDER.x + BORDER.width: #left
+         blue_ship.x -= VELOCITY
+    if key_pressed[pygame.K_RIGHT] and blue_ship.x + VELOCITY + blue_ship.width < WIDTH: #right
+         blue_ship.x += VELOCITY
+    if key_pressed[pygame.K_UP] and blue_ship.y - VELOCITY  > 35 : #up
+         blue_ship.y -= VELOCITY
+    if key_pressed[pygame.K_DOWN] and blue_ship.y + VELOCITY + blue_ship.width < HEIGHT: #down
+         blue_ship.y += VELOCITY
 
 
 
