@@ -1,13 +1,12 @@
-import pygame,sys
+import pygame
+import sys
 import os
 import math
-pygame.font.init()
-
 pygame.mixer.pre_init(44100,16,2,4096)
 pygame.init()
 
 
-pygame.mixer.music.load('assets/bg space music.mp3')
+pygame.mixer.music.load(os.path.join('assets/bg space music.mp3'))
 pygame.mixer.music.set_volume(0.2)
 pygame.mixer.music.play(-1)
 
@@ -17,11 +16,11 @@ WIDTH = 1400
 SHIP_WIDTH = 85
 SHIP_HEIGHT = 90
 VELOCITY = 10
-BULLET_VELOCITY = 10
-MAX_BULLETS = 4
+BULLET_VELOCITY = 20
+MAX_BULLETS = 5
 HEALTH_FONT = pygame.font.SysFont("Comicsans",30)
 WINNER_FONT = pygame.font.SysFont("Comicsans",120)
-BULLET_FIRE_SOUND = pygame.mixer.Sound('assets/fire.mp3')
+BULLET_FIRE_SOUND = pygame.mixer.Sound(os.path.join('assets/fire.mp3'))
 
 # colors
 WHITE = (255,255,255)
@@ -189,3 +188,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
